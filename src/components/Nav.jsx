@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 
 const Nav = () => {
   return (
-    <div className='flex justify-between px-10 py-5'>
+    <div className='flex justify-between px-10 py-5 '>
         <h1 className='text-2xl font-bold'>Employees</h1>
         <a className='bg-[#02b9b0] text-sm text-white p-2 rounded-xl flex'><Icon icon="iconoir:add-user" width="24" height="24" />  Add Employee</a>
     </div>

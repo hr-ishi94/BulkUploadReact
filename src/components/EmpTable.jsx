@@ -1,12 +1,80 @@
 import React from 'react'
 import { Icon } from '@iconify/react'
 import DropDown from './DropDown'
+import EmpCard from './EmpCard'
+import EmpTypeCard from './EmpTypeCard'
 
 const EmpTable = () => {
+  const data01 = [
+          {
+            "name": "Singaporean",
+            "value": 25
+          },
+          {
+            "name": "PR",
+            "value": 10
+          },
+          {
+            "name": "Forieigner",
+            "value": 10
+          },
+          {
+            "name": "Others",
+            "value": 6
+          },
+          
+        ];
+  const data02 = [
+          {
+            "name": "Active",
+            "value": 25
+          },
+          {
+            "name": "Invite Sent",
+            "value": 10
+          },
+          {
+            "name": "Payroll Only",
+            "value": 6
+          }
+          
+        ];
+  const data03 = [
+    {
+      "name": "Full-Timer",
+      "value": 25
+    },
+    {
+      "name": "Part-Timer",
+      "value": 10
+    },
+    {
+      "name": "Contract",
+      "value": 5
+    },
+    {
+      "name": "Intern",
+      "value": 6
+    },
+
+  ]
+
+        
   return (
     
 
-  <div className="relative overflow-x-auto sm:rounded-lg m-6 ">
+  <div className="relative overflow-x-auto mx-6 my-2 ">
+      <div className='flex justify-end mb-2'>
+
+      <a className='flex px-1 py-1 border-2 rounded-xl border-gray-400'><Icon icon="iconoir:download" width="24" height="24" />Export</a>
+      </div>
+
+    
+    <div className='flex gap-3'>
+      <EmpCard itemName="Nationality" data={data01}  />
+      <EmpTypeCard data={data03}/>
+      <EmpCard itemName="Employee Status" data={data02} halfPie />
+    </div>
     <div className='flex justify-between my-4'>
       <h1 className='text-lg font-bold mx-2'>All Employees</h1>
       <div className='flex gap-3 '>
@@ -26,8 +94,10 @@ const EmpTable = () => {
 
       </div>
     </div>
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-2">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <div className=' border-2 rounded-lg overflow-hidden'>
+
+      <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b-2">
               <tr>
                   <th scope="col" className="px-6 py-3 ">
                       <input type="checkbox" />
@@ -60,89 +130,163 @@ const EmpTable = () => {
               </tr>
           </thead>
           <tbody>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr className="bg-white border-b-2">
                   <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     <input type="checkbox" />
                   </th>
-                  <td className="px-6 py-4">
-                      Silver
+                  <td className="px-6 py-3">
+                      <a href="">FHAJ3717</a>
                   </td>
-                  <td className="px-6 py-4">
-                      Silver
+                  <td className="px-6 py-3">
+                      <div className='flex gap-2'>
+                        <div className='w-8 h-8 rounded-full bg-gray-300 border-2 border-gray-500'></div>
+                        <h1 className='pt-2'>
+                        Profile 1
+
+                        </h1>
+                      </div>
                   </td>
-                  <td className="px-6 py-4">
-                      Laptop
+                  <td className="px-6 py-3">
+                      example@mail.com
                   </td>
-                  <td className="px-6 py-4">
-                      $2999
+                  <td className="px-6 py-3">
+                      Senior Marketer
                   </td>
-                  <td className="px-6 py-4">
-                      <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                  <td className="px-6 py-3 ">
+                    <div className='bg-blue-200 w-20  text-blue-600 rounded-full flex flex-grow items-center px-3  py-1'>
+                      <Icon icon="pajamas:status-active" width="12" height="12" />
+                      <a href="#" className="font-medium  "> Active</a>
+
+                    </div>
                   </td>
               </tr>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr className="bg-white border-b-2">
                   <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     <input type="checkbox" />
                   </th>
-                  <td className="px-6 py-4">
-                      Silver
+                  <td className="px-6 py-3">
+                      <a href="">FHAJ3717</a>
                   </td>
-                  <td className="px-6 py-4">
-                      Silver
+                  <td className="px-6 py-3">
+                      <div className='flex gap-2'>
+                        <div className='w-8 h-8 rounded-full bg-gray-300 border-2 border-gray-500'></div>
+                        <h1 className='pt-2'>
+                        Profile 1
+
+                        </h1>
+                      </div>
                   </td>
-                  <td className="px-6 py-4">
-                      Laptop
+                  <td className="px-6 py-3">
+                      example@mail.com
                   </td>
-                  <td className="px-6 py-4">
-                      $2999
+                  <td className="px-6 py-3">
+                      Senior Marketer
                   </td>
-                  <td className="px-6 py-4">
-                      <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                  <td className="px-6 py-3 ">
+                    <div className='bg-blue-200 w-20  text-blue-600 rounded-full flex flex-grow items-center px-3  py-1'>
+                      <Icon icon="pajamas:status-active" width="12" height="12" />
+                      <a href="#" className="font-medium  "> Active</a>
+
+                    </div>
                   </td>
               </tr>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr className="bg-white border-b-2">
                   <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     <input type="checkbox" />
                   </th>
-                  <td className="px-6 py-4">
-                      Silver
+                  <td className="px-6 py-3">
+                      <a href="">FHAJ3717</a>
                   </td>
-                  <td className="px-6 py-4">
-                      Silver
+                  <td className="px-6 py-3">
+                      <div className='flex gap-2'>
+                        <div className='w-8 h-8 rounded-full bg-gray-300 border-2 border-gray-500'></div>
+                        <h1 className='pt-2'>
+                        Profile 1
+
+                        </h1>
+                      </div>
                   </td>
-                  <td className="px-6 py-4">
-                      Laptop
+                  <td className="px-6 py-3">
+                      example@mail.com
                   </td>
-                  <td className="px-6 py-4">
-                      $2999
+                  <td className="px-6 py-3">
+                      Senior Marketer
                   </td>
-                  <td className="px-6 py-4">
-                      <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                  <td className="px-6 py-3 ">
+                    <div className='bg-blue-200 w-20  text-blue-600 rounded-full flex flex-grow items-center px-3  py-1'>
+                      <Icon icon="pajamas:status-active" width="12" height="12" />
+                      <a href="#" className="font-medium  "> Active</a>
+
+                    </div>
                   </td>
               </tr>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr className="bg-white border-b-2">
                   <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     <input type="checkbox" />
                   </th>
-                  <td className="px-6 py-4">
-                      Silver
+                  <td className="px-6 py-3">
+                      <a href="">FHAJ3717</a>
                   </td>
-                  <td className="px-6 py-4">
-                      Silver
+                  <td className="px-6 py-3">
+                      <div className='flex gap-2'>
+                        <div className='w-8 h-8 rounded-full bg-gray-300 border-2 border-gray-500'></div>
+                        <h1 className='pt-2'>
+                        Profile 1
+
+                        </h1>
+                      </div>
                   </td>
-                  <td className="px-6 py-4">
-                      Laptop
+                  <td className="px-6 py-3">
+                      example@mail.com
                   </td>
-                  <td className="px-6 py-4">
-                      $2999
+                  <td className="px-6 py-3">
+                      Senior Marketer
                   </td>
-                  <td className="px-6 py-4">
-                      <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                  <td className="px-6 py-3 ">
+                    <div className='bg-blue-200 w-20  text-blue-600 rounded-full flex flex-grow items-center px-3  py-1'>
+                      <Icon icon="pajamas:status-active" width="12" height="12" />
+                      <a href="#" className="font-medium  "> Active</a>
+
+                    </div>
+                  </td>
+              </tr>
+              <tr className="bg-white border-b-2">
+                  <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <input type="checkbox" />
+                  </th>
+                  <td className="px-6 py-3">
+                      <a href="">FHAJ3717</a>
+                  </td>
+                  <td className="px-6 py-3">
+                      <div className='flex gap-2'>
+                        <div className='w-8 h-8 rounded-full bg-gray-300 border-2 border-gray-500'></div>
+                        <h1 className='pt-2'>
+                        Profile 1
+
+                        </h1>
+                      </div>
+                  </td>
+                  <td className="px-6 py-3">
+                      example@mail.com
+                  </td>
+                  <td className="px-6 py-3">
+                      Senior Marketer
+                  </td>
+                  <td className="px-6 py-3 ">
+                    <div className='bg-blue-200 w-20  text-blue-600 rounded-full flex flex-grow items-center px-3  py-1'>
+                      <Icon icon="pajamas:status-active" width="12" height="12" />
+                      <a href="#" className="font-medium  "> Active</a>
+
+                    </div>
                   </td>
               </tr>
               
+              
+              
           </tbody>
       </table>
+      </div>
+
   </div>
 
 
