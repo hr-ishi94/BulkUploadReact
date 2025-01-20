@@ -1,6 +1,8 @@
 import React from 'react'
 
 const EmpTypeCard = ({data}) => {
+  const {name, value } = data[0]
+  console.log(data)
 
     const colors = ['#02B9B0','#B774FC','#B3BEBE','#FAC905']
     const total = data.reduce((entry,item)=> entry + item.value, 0)
@@ -10,8 +12,8 @@ const EmpTypeCard = ({data}) => {
         <div className='flex flex-col'>
             <div className='flex flex-col items-start gap-1 ml-5 my-5'>
                 <h1 className='text-sm text-gray-600 font-medium'>Employee Type</h1>
-                <h1 className='text-3xl font-bold'>13</h1>
-                <h1 className='text-md font-medium'>Full Timers</h1>
+                <h1 className='text-3xl font-bold'>{value}</h1>
+                <h1 className='text-md font-medium'>{name}</h1>
             </div>
             <div className='flex justify-center mx-4'>
                 {data.map((entry,index)=>

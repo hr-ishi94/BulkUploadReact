@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Dialog, DialogBody, DialogFooter } from "@material-tailwind/react";
 import emptyFolder from "../assets/emptyFolder.png";
 import excelLogo from "../assets/excelLogo.png";
@@ -6,13 +6,18 @@ import { Icon } from "@iconify/react";
 import gsap from "gsap";
 import excelModel from '../assets/excelModel.xlsx' 
 import * as XLSX from 'xlsx'
+import { useDispatch, useSelector } from "react-redux";
+import { setEmployees, setLoading } from "../redux/EmployeeSlice";
 
-const UploadModal = ({ handleOpen, open }) => {
+const UploadModal = ({ handleOpen, open ,setAnimationComplete}) => {
   const folderRef = useRef(null);
   const dragTextRef = useRef(null);
   const loaderContentRef = useRef(null);
   const loaderBarRef = useRef(null);
-  const fileInputRef = useRef(null); // Ref for file input
+  const fileInputRef = useRef(null); 
+
+  const {employees, loading, error} = useSelector((state)=>state.employees)
+  const dispatch = useDispatch()
 
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -34,7 +39,24 @@ const UploadModal = ({ handleOpen, open }) => {
 
     const file = e.dataTransfer.files[0];
     validateAndAnimate(file);
+    const reader = new FileReader()
+
+    reader.onload = (event)=>{
+        dispatch(setLoading(true))
+        const workbook = XLSX.read(event.target.result,{type:'binary'})
+        const sheetName = workbook.SheetNames[0]
+        const sheet = workbook.Sheets[sheetName]
+        const sheetData = XLSX.utils.sheet_to_json(sheet)
+
+        setData(sheetData)
+        dispatch(setEmployees(sheetData))
+        dispatch(setLoading(false))
+
+    }
+    reader.readAsBinaryString(file)
   };
+
+
 
   const handleFileSelection = (e) => {
     const file = e.target.files[0];
@@ -42,12 +64,14 @@ const UploadModal = ({ handleOpen, open }) => {
     const reader = new FileReader()
 
     reader.onload = (event)=>{
+      dispatch(setLoading(true))
         const workbook = XLSX.read(event.target.result,{type:'binary'})
         const sheetName = workbook.SheetNames[0]
         const sheet = workbook.Sheets[sheetName]
         const sheetData = XLSX.utils.sheet_to_json(sheet)
         setData(sheetData)
-        console.log(data,'ddddd')
+        dispatch(setEmployees(sheetData))
+        dispatch(setLoading(false))
     }
     reader.readAsBinaryString(file)
   };
@@ -73,9 +97,8 @@ const UploadModal = ({ handleOpen, open }) => {
   const timeline = gsap.timeline({
     onComplete: () => {
       setTimeout(() => {
-        setIsUploading(false); // Reset state after the animation
-        handleOpen(); // Call handleOpen after animation and timeout
-      }, 1000); // Simulate upload duration
+        setIsUploading(false); 
+      }, 1000); 
     },
   });
 
@@ -166,7 +189,7 @@ const UploadModal = ({ handleOpen, open }) => {
           </h1>
           <input
             type="file"
-            accept=".xls"
+            accept=".xlsx"
             className="hidden"
             ref={fileInputRef}
             onChange={handleFileSelection}
@@ -206,7 +229,7 @@ const UploadModal = ({ handleOpen, open }) => {
           <span>Cancel</span>
         </button>
         <button
-          onClick={handleOpen}
+          onClick={()=>setAnimationComplete(true)}
           className="text-white font-medium bg-[#02b9b0] border-2 py-2 px-3 mx-1 text-base rounded-xl font-quicksand"
         >
           <span>Continue</span>

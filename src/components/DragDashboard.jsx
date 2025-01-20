@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react'
 import UploadModal from './UploadModal';
 import SuccessModal from './SuccessModal';
 
-const DragDashboard = () => {
+const DragDashboard = ({setAnimationComplete}) => {
 
     
       const [open, setOpen] = React.useState(false);
@@ -22,7 +22,7 @@ const DragDashboard = () => {
             <button className='text-sm border-2 border-gray-500 p-2 rounded-lg bg-gray-50 flex gap-2' onClick={handleOpen}> <Icon icon="iconoir:add-database-script" width="18" height="18" /> Bulk Upload</button>
             <button className='text-white bg-[#02b9b0] p-2 rounded-lg text-sm flex gap-2 ' onClick={handleOpen1}><Icon icon="iconoir:add-user" width="18" height="18"  /> Add Employee</button>
         </div>
-        <UploadModal handleOpen={handleOpen} open = {open}/>
+        <UploadModal handleOpen={handleOpen} open = {open} setAnimationComplete={setAnimationComplete}/>
         <SuccessModal handleOpen={handleOpen1} open={open1}/>
          
     </div>

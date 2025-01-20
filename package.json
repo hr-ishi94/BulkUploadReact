@@ -17,7 +17,11 @@
     "gsap": "^3.12.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-redux": "^9.2.0",
+    "react-spinners": "^0.15.0",
+    "react-toastify": "^11.0.3",
     "recharts": "^2.15.0",
+    "spinners": "^1.2.2",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
